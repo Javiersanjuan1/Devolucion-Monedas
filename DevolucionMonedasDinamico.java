@@ -1,8 +1,8 @@
 public class DevolucionMonedasDinamico {
 
     public static void main(String[] args) {
-        int[] monedas = {1, 2, 5, 10, 20, 50, 100, 200}; // céntimos
-        int cantidad = 568; // 5,68 €
+        int[] monedas = {1, 2, 5, 10, 20, 50, 100, 200};
+        int cantidad = 568;
 
         int[] resultado = devolverCambio(monedas, cantidad);
 
@@ -14,14 +14,11 @@ public class DevolucionMonedasDinamico {
     public static int[] devolverCambio(int[] monedas, int cantidad) {
         int[] dp = new int[cantidad + 1];
         int[] ultMoneda = new int[cantidad + 1];
-
-        // Inicialización
         for (int i = 1; i <= cantidad; i++) {
             dp[i] = Integer.MAX_VALUE;
             ultMoneda[i] = -1;
         }
 
-        // Programación dinámica
         for (int i = 1; i <= cantidad; i++) {
             for (int j = 0; j < monedas.length; j++) {
                 if (monedas[j] <= i && dp[i - monedas[j]] != Integer.MAX_VALUE) {
@@ -38,7 +35,6 @@ public class DevolucionMonedasDinamico {
             return null;
         }
 
-        // Reconstrucción de solución
         int[] resultado = new int[monedas.length];
         int k = cantidad;
         while (k > 0) {
